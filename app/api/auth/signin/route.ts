@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
     const data = await result.json();
     
     const response = NextResponse.json(null, {status: StatusCodes.Ok});
-    response.cookies.set("crm_sid", data.access_token, {
+    response.cookies.set(`${process.env.NEXT_PUBLIC_COOKIE_SID_NAME}`, data.access_token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         maxAge: rememberMe ? 3600 * 24 * 30 : undefined, // 30 days
